@@ -24,4 +24,17 @@ class Team
   def details
     { "total_value" => @total_value, "player_count" => @player_count }
   end
+
+  def average_cost_of_player
+    average = @total_value / @player_count
+    "$#{average.to_s.chars.reverse.each_slice(3).map(&:join).join(",").reverse}"
+  end
+
+  def players_by_last_name
+    last_names = []
+    @roster.each do |player|
+      last_names << player.last_name 
+    end
+    last_names.join(", ")
+  end
 end
